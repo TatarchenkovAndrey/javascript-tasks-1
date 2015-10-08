@@ -1,38 +1,45 @@
 var hours = process.argv[2];
 var minutes = process.argv[3];
+var Decada = ['NN', 'X', 'XX', 'XXX', 'XL', 'L'];
+var Units = ['NN', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
+	hours = Number(hours);
+	minutes = Number(minutes);
+var text1 = 'Ваше время арабскими числами: ';
+ 
+	if ( (hours > 23) || (hours < 0)) 
+		{
+			console.log ("Неверно введено Время, попробуйте еще раз");
+			return;
+		}
+	if ((minutes > 59) || (minutes < 0))
+		{
+			console.log ('Неверный, к сожалению, ввод');
+			return;
+		}
 
-var arab_last =hours%10;
-var arab_h = (hours - arab_last)/10;
-var r1,r2,r3,r4;
-	if(arab_h == '0') r1 ='';
-	if(arab_h == '1') r1 = 'X';
-	if(arab_h == '2') r1 = 'XX';
-		if(arab_last == '0') r2 = '';
-		if(arab_last == '1') r2 = 'I';								  
-		if(arab_last == '2') r2 = 'II';
-		if(arab_last == '3') r2 = 'III';
-		if(arab_last == '4') r2 = 'IV';
-		if(arab_last == '5') r2 = 'V';
-		if(arab_last == '6') r2 = 'VI';
-		if(arab_last == '7') r2 = 'VII';
-		if(arab_last == '8') r2 = 'VIII';
-		if(arab_last == '9') r2 = 'IX';
-var a_min= minutes%10;
-var a_m =(minutes - a_min)/10;
-	if(a_m == '0') r3 ='';
-	if(a_m == '1') r3 = 'X';
-	if(a_m == '2') r3 = 'XX';
-	if(a_m == '3') r3 ='XXX';
-	if(a_m == '4') r3 = 'XL';
-	if(a_m == '5') r3 = 'L';
-		if (a_min == '0') r4 = '';
-		if(a_min == '1') r4 = 'I';
-		if(a_min == '2') r4 = 'II';
-		if(a_min == '3') r4 = 'III';
-		if(a_min == '4') r4 = 'IV';
-		if(a_min == '5') r4 = 'V';
-		if(a_min == '6') r4 = 'VI';
-		if(a_min == '7') r4 = 'VII';
-		if(a_min == '8') r4 = 'VIII';
-		if(a_min == '9') r4 = 'IX';
-console.log(r1+r2,' : ',r3+r4);
+console.log (text1 + hours + ':' + minutes);    
+var hoursUnits = hours%10;
+var hoursDecada = (hours - hoursUnits) / 10;                
+var minutesUnits = minutes%10;
+var minutesDecada = (minutes - minutesUnits) / 10;    
+var RomanHoursDecada, RomanhoursUnits, RomanMinutesDecada, RomanMinutesUnits;
+   
+	for (var i = 0; i < Decada.length; i++)
+		{
+			if (hoursDecada === i) RomanHoursDecada = Decada[i];
+		}
+	for (var i = 0; i < Units.length; i++)
+		{
+			if (hoursUnits === i) RomanHoursUnits = Units[i];
+		}
+	for (var i = 0; i < Decada.length; i++)
+		{
+			if (minutesDecada === i) RomanMinutesDecada = Decada[i];
+		}
+	for (var i = 0; i < Units.length; i++)
+		{
+			if (minutesUnits === i) RomanMinutesUnits = Units[i];
+		}
+	console.log('Ваше время записывается римскими цифрами как: ');
+	console.log (RomanHoursDecada + RomanHoursUnits + ":" + RomanMinutesDecada + RomanMinutesUnits);
+	console.log('Спасибо, что дождались решения, надеюсь, оно успешно');
